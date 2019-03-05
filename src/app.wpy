@@ -28,8 +28,8 @@ export default class extends wepy.app {
       'pages/personalpage',
       'pages/setfocus',
       'pages/signin',
-      'pages/shop',
-      'pages/dressingroom'
+      'pages/dressingroom',
+      'pages/community'
     ],
     window: {
       backgroundTextStyle: 'light',

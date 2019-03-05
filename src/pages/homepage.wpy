@@ -55,6 +55,24 @@
     color:white;
     font-weight:bolder;
   }
+  .booklink{
+    display: flex;
+    flex-direction:row;
+    position: fixed;
+    top: 180rpx;
+    right: 25rpx;
+  }
+  .dressing{
+    width:120rpx;
+    margin-right: 35rpx;
+    rotate:-10deg;
+  }
+  .shopping{
+    width:130rpx;
+    margin-left: 20rpx;
+    rotate:6deg;
+
+  }
 
 </style>
 
@@ -64,12 +82,12 @@
     <view class="userinfo" slot="title">
         <open-data type="userNickName" lang="zh_CN" class="userinfo-nickname"></open-data>
       <view class="userAvatar-wrapper" @tap="gotoPersonal">
-        <open-data type="userAvatarUrl" class="userinfo-avatar" ></open-data>
+        <open-data type="userAvatarUrl" class="userinfo-avatar"></open-data>
       </view>
     </view>
-    <view>
-      <image class="shopping" @tap="goShoping"></image>
-      <image class="dressing" @tap="goDressing"></image>
+    <view class="booklink">
+      <image class="community" @tap="goCommunity" src="https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/dressroom.png?raw=true" mode="widthFix"></image>
+      <image class="dressing" @tap="goDressing" src="https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/shopping.png?raw=true" mode="widthFix"></image>
     </view>
 
     <view class="bodyImg">
@@ -132,9 +150,9 @@
         console.log('gotoPersonal')
         this.$navigate('./personalpage')
       },
-      goShoping () {
-        console.log('Shop')
-        this.$navigate('./shop')
+      goCommunity () {
+        console.log('community')
+        this.$navigate('./community')
       },
       goDressing () {
         console.log('dressing room')

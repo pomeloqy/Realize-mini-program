@@ -33,7 +33,7 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '更衣室'
+      navigationBarTitleText: '社区'
     }
   }
 </script>
