@@ -22,6 +22,13 @@
   .go-app {
     margin-top:100rpx;
   }
+  .container{
+    background-image: url('https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/fatcat.png?raw=true');
+    min-height: 100vh;
+    background-size: cover;
+    webkit-backdrop-filter: 0.2;
+    z-index: -999;
+  }
 </style>
 <template>
   <view class="container">
@@ -62,9 +69,9 @@
             success: function (res) {
               if (res.confirm) {
                 wepy.showToast({
-                  title: '正在登陆登陆',
+                  title: '正在连接现实',
                   icon: 'loading',
-                  duration: 10000
+                  duration: 1000
                 })
                 wepy.login({
                   success: function(res) {
@@ -99,16 +106,14 @@
                         fail: function(res) {
                           console.log('failed!')
                           wepy.hideToast()
-                          wepy.showToast({
-                            title: '登陆失败',
-                            icon: 'loading',
-                            duration: 3000
-                          })
                         }
                       })
                     }
                   },
                   fail: function (res) {
+                    wepy.switchTab({
+                      url: './homepage'
+                    })
                     console.log('login weixin failed!')
                   }
                 })

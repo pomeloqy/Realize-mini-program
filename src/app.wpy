@@ -23,38 +23,19 @@ export default class extends wepy.app {
   config = {
     pages: [
       'pages/homepage',
-      'pages/index',
       'pages/login',
-      'pages/personalpage'
+      'pages/index',
+      'pages/personalpage',
+      'pages/setfocus',
+      'pages/signin',
+      'pages/shop',
+      'pages/dressingroom'
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'Realize',
       navigationBarTextStyle: 'black'
-    },
-    tabBar: {
-      selectedColor: '#1296db',
-      list: [
-        {
-          pagePath: 'pages/index',
-          text: '范例',
-          iconPath: 'imgs/Home.png',
-          selectedIconPath: 'imgs/homepage.png'
-        },
-        {
-          pagePath: 'pages/homepage',
-          text: '学习',
-          iconPath: 'imgs/microphone2.png',
-          selectedIconPath: 'imgs/microphone.png'
-        },
-        {
-          pagePath: 'pages/login',
-          text: '商店',
-          iconPath: 'imgs/setting.png',
-          selectedIconPath: 'imgs/settings.png'
-        }
-      ]
     }
   }
 
