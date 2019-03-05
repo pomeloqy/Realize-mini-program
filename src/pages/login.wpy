@@ -1,0 +1,141 @@
+<style lang="less">
+  .userinfo {
+    margin-top:100rpx;
+    display:block;
+    text-align: center;
+  }
+  .userAvatar-wrapper {
+    width: 128rpx;
+    height: 128rpx;
+    margin: 20rpx auto;
+    border-radius: 50%;
+    overflow: hidden;
+    text-align:center
+  }
+  .userinfo-nickname {
+    color: #aaa;
+  }
+
+  .usermotto {
+    margin-top: 200px;
+  }
+  .go-app {
+    margin-top:100rpx;
+  }
+</style>
+<template>
+  <view class="container">
+    <view class="userinfo">
+      <view class="userAvatar-wrapper">
+        <open-data type="userAvatarUrl" class="userinfo-avatar" ></open-data>
+      </view>
+      <open-data type="userNickName" lang="zh_CN" class="userinfo-nickname"></open-data>
+    </view>
+    <button @tap="access" class="go-app">进入实现</button>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import testMixin from '../mixins/test'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: 'realize 实现现实'
+    }
+
+    mixins = [testMixin]
+
+    data = {
+    }
+    methods = {
+      access () {
+        // 下面这行也是为了测试,之后删除
+        wepy.clearStorageSync('sessionToken')
+        if (wepy.getStorageSync('sessionToken')) {
+          wepy.switchTab({
+            url: './homepage'
+          })
+        } else {
+          wepy.showModal({
+            title: '允许微信授权登录',
+            success: function (res) {
+              if (res.confirm) {
+                wepy.showToast({
+                  title: '正在登陆登陆',
+                  icon: 'loading',
+                  duration: 10000
+                })
+                wepy.login({
+                  success: function(res) {
+                    console.log('code:' + res.code)
+                    if (res.code) {
+                      wepy.request({
+                        // url: 'http://127.0.0.1:3000/wx/onlogin',
+                        url: 'https://baidusmarthomeforff.cn/apiv1/login',
+                        data: {
+                          code: res.code
+                        },
+                        method: 'POST',
+                        header: {
+                          'content-type': 'application/json'
+                        },
+                        success: function(res) {
+                          console.log(`res:${res.statusCode}`)
+                          console.log(`res.data.msg:${res.data.msg}`)
+                          if (res.statusCode === 200) {
+                            console.log(res.data.data.sessionToken)
+                            wepy.setStorageSync('sessionToken', res.data.data.sessionToken)
+                            wepy.hideToast()
+                            wepy.switchTab({
+                              url: './homepage'
+                            })
+                          } else if (res.statusCode === 403) {
+                            console.log(res.statusCode)
+                          } else if (res.statusCode === 404) {
+                            console.log(res.statusCode)
+                          }
+                        },
+                        fail: function(res) {
+                          console.log('failed!')
+                          wepy.hideToast()
+                          wepy.showToast({
+                            title: '登陆失败',
+                            icon: 'loading',
+                            duration: 3000
+                          })
+                        }
+                      })
+                    }
+                  },
+                  fail: function (res) {
+                    console.log('login weixin failed!')
+                  }
+                })
+              } else {
+                console.log('不允许登陆')
+              }
+            }
+          })
+        }
+      }
+    }
+
+    onLoad() {
+      console.log('index onload')
+    }
+
+    onShow() {
+      console.log('index is on show')
+    }
+    onReady() {
+      console.log('index is on ready')
+    }
+    onHide() {
+      console.log('index is on hide')
+    }
+    onUnload() {
+      console.log('index is on unload')
+    }
+  }
+</script>
