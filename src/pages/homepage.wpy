@@ -1,25 +1,33 @@
 <style lang="less">
   .container{
-    background-image: url('https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/selves.jpg?raw=true');
-
-    height:100%;
+    background-image: url('https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/desk.png?raw=true');
+    min-height: 100vh;
     background-size: cover;
+    webkit-backdrop-filter: 0.5;
     z-index: -999;
   }
 
   .bodyImg{
-    height:500rpx;
-    width:500rpx;
-    z-index: 99;
+    position: fixed;
+    bottom:45rpx;
+  }
+  .userImg{
+    width: 50rpx;
+    height: 50rpx;
+    radious: 5rpx;
   }
 
 </style>
 <template>
   <view class="container">
-    <panel>aaa</panel>
     <panel>
-      <image class="bodyImg" src="https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/body.png?raw=true">body</img>
+      <view slot="title">用户名
+        <image class="userImg" src=""></image>
+      </view>
     </panel>
+    <view class="bodyImg">
+      <image src="https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/body.png?raw=true" mode="widthFix" style="width:1200rpx">body</image>
+    </view>
   </view>
 </template>
 
