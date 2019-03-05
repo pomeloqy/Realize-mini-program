@@ -22,8 +22,9 @@ setStore(store)
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/login',
       'pages/homepage',
+      'pages/index',
+      'pages/login',
       'pages/personalpage'
     ],
     window: {
@@ -36,14 +37,14 @@ export default class extends wepy.app {
       selectedColor: '#1296db',
       list: [
         {
-          pagePath: 'pages/personalpage',
-          text: '卧室',
+          pagePath: 'pages/index',
+          text: '范例',
           iconPath: 'imgs/Home.png',
           selectedIconPath: 'imgs/homepage.png'
         },
         {
           pagePath: 'pages/homepage',
-          text: '自修室',
+          text: '学习',
           iconPath: 'imgs/microphone2.png',
           selectedIconPath: 'imgs/microphone.png'
         },

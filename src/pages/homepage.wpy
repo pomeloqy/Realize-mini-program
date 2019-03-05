@@ -1,22 +1,26 @@
 <style lang="less">
-  .userinfo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .container{
+    background-image: url('https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/selves.jpg?raw=true');
+
+    height:100%;
+    background-size: cover;
+    z-index: -999;
   }
 
-  .userinfo-avatar {
-    width: 80rpx;
-    height: 80rpx;
-    border-radius: 50%;
+  .bodyImg{
+    height:500rpx;
+    width:500rpx;
+    z-index: 99;
   }
 
-  .userinfo-nickname {
-    color: #aaa;
-  }
 </style>
 <template>
-  <view class="container">homepage</view>
+  <view class="container">
+    <panel>aaa</panel>
+    <panel>
+      <image class="bodyImg" src="https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/body.png?raw=true">body</img>
+    </panel>
+  </view>
 </template>
 
 <script>
