@@ -68,6 +68,20 @@
   display: flex;
   flex-direction: row;
 }
+.details{
+  width:100%;
+  height:100%;
+  clear: both;
+}
+.date-all-details{
+  border: 2rpx solid #eaeaea;
+}
+.blue-bg{
+  display:fixed;
+  width:100%;
+  top:100rpx;
+  z-index: 999;
+}
 </style>
 <template>
   <view class="container">
@@ -92,8 +106,14 @@
             <view class="date-number">{{item.realday}}</view>
           </view>
         </view>
-        <view class="date-details"></view>
+        <view class="details">
+          <view class="date-all-details" hidden="{{activeIndex != 1}}">all--------------</view>
+          <view class="date-one-details" hidden="{{activeIndex != 0}}">one-----------------</view>
+        </view>
       </view>
+    </view>
+    <view class="">
+      <image class="blue-bg" src="https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/blue/blue0.png?raw=true"></image>
     </view>
   </view>
 </template>
@@ -103,6 +123,7 @@
 
   export default class Toast extends wepy.page {
     data = {
+      activeIndex: 1,
       userInfo: {
         nickName: '加载中...'
       },
@@ -142,7 +163,8 @@
           weekday: 'WED',
           realday: '今'
         }
-      ]
+      ],
+      img: 'https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/blue/blue0.png?raw=true'
     };
 
     methods = {

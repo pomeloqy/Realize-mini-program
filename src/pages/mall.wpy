@@ -14,14 +14,60 @@
   .userinfo-nickname {
     color: #aaa;
   }
+  .box {
+    width:90%;
+    text-align: center;
+    margin-top: 30rpx;
+  } 
+  .head {
+    height:300rpx;
+    /* background-color: gray; */
+    background-image: url('https://png.pngtree.com/thumb_back/fw800/back_pic/03/56/72/72579eec0361f20.jpg');
+    background-size: cover;
+    webkit-backdrop-filter: 0.5;
+    border-radius: 30rpx;
+  }
 </style>
 <template>
-  <view class="contain">
-    <view class="head">
+  <view class="container">
+    <view class="head box">
     </view>
-    <view >优惠网课</view>
-    <view >每日公益</view>
-    <view >好物优选</view>
+    <view class="netcourse box">
+      <view class="netcourse-title">优惠网课
+        <span class="rect"></span>
+      </view>
+      <view class="list">
+        <view class="netcourse-list">内容
+          <image>商品</image>
+          <view>品名</view>
+          <view>价格</view>
+        </view>
+      </view>
+    </view>
+    <view class="netcourse box">
+      <view class="netcourse-title">每日公益
+        <span class="rect"></span>
+      </view>
+      <view class="list">
+        <view class="netcourse-list">内容
+          <image>商品</image>
+          <view>品名</view>
+          <view>价格</view>
+        </view>
+      </view>
+    </view>
+    <view class="netcourse box">
+      <view class="netcourse-title">好物优选
+        <span class="rect"></span>
+      </view>
+      <view class="list">
+        <view class="netcourse-list">内容
+          <image>商品</image>
+          <view>品名</view>
+          <view>价格</view>
+        </view>
+      </view>
+    </view>
   </view>
 </template>
 
