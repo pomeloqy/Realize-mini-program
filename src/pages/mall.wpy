@@ -16,7 +16,12 @@
   }
 </style>
 <template>
-  <view class="container">商店
+  <view class="contain">
+    <view class="head">
+    </view>
+    <view >优惠网课</view>
+    <view >每日公益</view>
+    <view >好物优选</view>
   </view>
 </template>
 
@@ -27,7 +32,7 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '商店'
+      navigationBarTitleText: '开始专注'
     }
   }
 </script>

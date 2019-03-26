@@ -14,15 +14,65 @@
   .userinfo-nickname {
     color: #aaa;
   }
+
+  .dressingRom {
+    background-image: url('https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/dressing.png?raw=true');
+    min-height: 68vh;
+    width:100%;
+    background-size: cover;
+    webkit-backdrop-filter: 0.5;
+    z-index: -999;
+  }
+  .bodyImg {
+    margin-top:265rpx;
+    margin-left:410rpx;
+    width:290rpx;
+  }
+
+  .clothes_buttons {
+    display: inline-block;
+    height: auto;
+    width: 100%;
+    margin-left: 0.5%;
+  }
+  .btn {
+    width: 160rpx;
+    height: 160rpx;
+    border: 5rpx solid #bfbfbf;
+    border-radius: 16px;
+    position: relative;
+    float: left;
+    text-align: center;
+    margin-left: 1%;
+    margin-right: 0.5%;
+    margin-bottom: 2%;
+    background-color: white;
+  }
+  .clothes_img {
+    width: 90%;
+    height: 89%;
+    border-radius: 5%;
+    position: absolute;
+    left: 0;
+    top: -10%;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
 </style>
+
 <template>
   <view class="container">
-    <view>
+    <view class="dressingRom">
+      <image class="bodyImg" src="https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/body.png?raw=true" mode="widthFix"></image>
     </view>
-    <panel>
-      <grids>
-      </grids>
-    </panel>
+    <view class="weui-cell clothes_buttons">
+      <block wx:for-items="{{clothes}}" wx:for-index="index" wx:for-item="item" wx:key="id">
+        <view class="btn">
+          <image class="clothes_img" src="{{item.img}}"></image>
+        </view>
+      </block>
+    </view>
   </view>
 </template>
 
@@ -34,6 +84,22 @@
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '更衣室'
+    }
+
+    data = {
+      clothes: [
+        {img: 'https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/cotta.png?raw=true'},
+        {img: 'https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/pants.png?raw=true'},
+        {img: 'https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/cotta.png?raw=true'},
+        {img: 'https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/pants.png?raw=true'},
+        {img: ''},
+        {img: ''},
+        {img: ''},
+        {img: ''}
+      ]
+    }
+    onload() {
+
     }
   }
 </script>

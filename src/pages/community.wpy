@@ -14,16 +14,91 @@
   .userinfo-nickname {
     color: #aaa;
   }
+
+  .dressingRom {
+    background-image: url('https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/dressing.png?raw=true');
+    min-height: 68vh;
+        width:100%;
+    background-size: cover;
+    webkit-backdrop-filter: 0.5;
+    z-index: -999;
+  }
+  .page{
+    background-color: "#980000";
+    fill-opacity: 0.8;
+  }
+
+  .username, .date, .like {
+    font-size: 10pt;
+    padding-bottom: 1rpx;
+  }
+
+  .like{
+    padding-top: 3rpx;
+    /**padding-left: 115rpx;**/
+  }
+
+  .header {
+    /*padding: 10px, 10px, 10px, 10px*/
+    margin-top: 10rpx;
+    margin-left: 10rpx;
+    color: "##980000";
+    background-color: "#980000";
+    fill-opacity: 0.5; 
+  }
+
+  .page__desc {
+    font-size: 10pt;
+  }
 </style>
 <template>
-  <view class="container">
-    <view>
+  <template name="commentItem">
+  <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+        <image class="weui-media-box__thumb commentimg" src="{{img}}" />
     </view>
-    <panel>
-      <grids>
-      </grids>
-    </panel>
+    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+      <view class="weui-cell">
+        <view class="weui-cell__hd">
+          <image class='userimg' src="{{userImg}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+        </view>
+      <view class="weui-cell__bd username" >{{userName}}</view>
+      <view class="weui-cell__ft">
+        <view class="date">{{date}}</view>
+      </view>
+    </view>
+    <view class="weui-media-box__desc ">{{desc}}</view>
+      <view class="weui-cell__ft like">
+        <image class='commentstars' src="https://github.com/ChickenDinner8/Client-Customer/blob/master/images/like.png?raw=true" style="margin-right: 1px; vertical-align: middle;width:20px; height: 20px;" id="{{index}}" bindtap="addLike"></image> {{likeCount}}
+        <image class='commentstars' src="https://github.com/ChickenDinner8/Client-Customer/blob/master/images/unlike.png?raw=true" style="margin-right: 1px;vertical-align: middle;width:20px; height: 20px;" id="{{index}}" bindtap="addUnlike"></image> {{unlikeCount}}
+      </view>
+    </view>
+  </navigator>
+</template>
+
+<view class="page">
+  <view class="page__hd header">
+    <view class="page__title">自律，使我自由</view>
+    <view class="page__desc">这些可爱的人儿也在Realize，看看大家都分享了什么收获...</view>
   </view>
+  <view class="page__bd">
+    <view class="weui-panel weui-panel_access">
+      <view class="weui-panel__hd">全部评论（{{comment_count}}）</view>
+        <view class="weui-panel__bd">
+          <view wx:for="{{comment}}" wx:key="comment_block">
+            <template is="commentItem" data="{{...item}}"/>
+          </view> 
+       </view>
+        <view class="weui-panel__ft">
+            <view class="weui-cell weui-cell_access weui-cell_link" id="comment" bindtap="toCommit">
+                <view class="weui-cell__bd">我也要评论</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </view>
+        </view>
+    </view>
+        
+    </view>
+</view>
 </template>
 
 <script>
@@ -34,6 +109,99 @@
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '社区'
+    }
+    data = {
+      comment_count: '2',
+      comment: [
+        {
+          img: 'https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/cotta.png?raw=true',
+          userImg: 'https://github.com/ChickenDinner8/Client-Customer/blob/master/images/userimg1.png?raw=true',
+          userName: '一叶知秋',
+          date: '2022-05-28',
+          desc: '今天画完了换衣模特的身体。',
+          likeCount: 31,
+          unlikeCount: 5,
+          canlike: 'true',
+          index: 0
+        },
+        {
+          img: 'https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/cotta.png?raw=true',
+          userImg: 'https://github.com/ChickenDinner8/Client-Customer/blob/master/images/userimg2.png?raw=true',
+          userName: '就是不说名字的人',
+          date: '2018-04-25',
+          desc: 'wepy默认的weiui模板不能用鸭TAT，but找到了其他方法解决！充实的下午wow',
+          likeCount: 101,
+          unlikeCount: 0,
+          canlike: 'true',
+          index: 1
+        }
+      ]
+    }
+
+    onLoad() {
+      this.setData({
+        comment_count: this.data.comment.length.toString()
+      })
+      console.log('comment_count', this.data.comment_count)
+    }
+
+    toCommit() {
+      wx.showToast({
+        title: '功能正在开发中',
+        icon: 'loading',
+        duration: 1000
+      })
+    }
+
+    addLike(event) {
+      var index = event.target.id
+      if (this.data.comment[index].canlike === 'true') {
+        console.log('comment data ', this.data)
+        var param = {}
+        var string = 'comment[' + index + '].canlike'
+        var string2 = 'comment[' + index + '].likeCount'
+        param[string] = 'false'
+        this.setData(param)
+        param[string2] = this.data.comment[index].likeCount + 1
+        this.setData(param)
+        console.log('param', param)
+        console.log('after setData', this.data.comment)
+      } else {
+        wx.showModal({
+          content: '你已经表态过了哦',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              console.log('再次点击like/unlike')
+            }
+          }
+        })
+      }
+    }
+
+    addUnlike(event) {
+      console.log('comment data ', this.data)
+      var index = event.target.id
+      console.log('unlike touch index', index)
+      if (this.data.comment[index].canlike === 'true') {
+        var param = {}
+        var string = 'comment[' + index + '].canlike'
+        var string2 = 'comment[' + index + '].unlikeCount'
+        param[string] = 'false'
+        this.setData(param)
+        param[string2] = this.data.comment[index].unlikeCount + 1
+        this.setData(param)
+      } else {
+        wx.showModal({
+          content: '你已经表态过了哦',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              console.log('再次点击like/unlike')
+            }
+          }
+        })
+      }
     }
   }
 </script>

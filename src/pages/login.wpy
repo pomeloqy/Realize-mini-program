@@ -29,16 +29,19 @@
     webkit-backdrop-filter: 0.2;
     z-index: -999;
   }
+  .access{
+    display:none;
+  }
 </style>
 <template>
-  <view class="container">
+  <view class="container" @tap="touch">
     <view class="userinfo">
       <view class="userAvatar-wrapper">
         <open-data type="userAvatarUrl" class="userinfo-avatar" ></open-data>
       </view>
       <open-data type="userNickName" lang="zh_CN" class="userinfo-nickname"></open-data>
     </view>
-    <button @tap="access" class="go-app">进入实现</button>
+    <!--<button @tap="access" class="go-app">进入实现</button> -->
   </view>
 </template>
 
@@ -56,6 +59,15 @@
     data = {
     }
     methods = {
+      touch() {
+        wepy.showToast({
+          title: '正在连接现实',
+          icon: 'loading',
+          duration: 1000
+        })
+        wepy.hideToast()
+        this.$redirect('./homepage')
+      },
       access () {
         // 下面这行也是为了测试,之后删除
         wepy.clearStorageSync('sessionToken')
@@ -71,7 +83,7 @@
                 wepy.showToast({
                   title: '正在连接现实',
                   icon: 'loading',
-                  duration: 1000
+                  duration: 30000
                 })
                 wepy.login({
                   success: function(res) {

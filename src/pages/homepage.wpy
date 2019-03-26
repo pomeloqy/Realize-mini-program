@@ -62,17 +62,26 @@
     top: 180rpx;
     right: 25rpx;
   }
-  .dressing{
+  .community{
     width:120rpx;
     margin-right: 35rpx;
     rotate:-10deg;
   }
-  .shopping{
+  .dressing{
     width:130rpx;
     margin-left: 20rpx;
     rotate:6deg;
 
   }
+/**
+  .combine{
+    position: relative;
+  }
+
+  .overlay {
+    position: absolute;
+  }
+  **/
 
 </style>
 
@@ -86,12 +95,15 @@
       </view>
     </view>
     <view class="booklink">
-      <image class="community" @tap="goCommunity" src="https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/dressroom.png?raw=true" mode="widthFix"></image>
+      <image class="community" @tap="goCommunity" src="https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/community.png?raw=true" mode="widthFix"></image>
       <image class="dressing" @tap="goDressing" src="https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/shopping.png?raw=true" mode="widthFix"></image>
     </view>
 
     <view class="bodyImg">
-      <image src="https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/body.png?raw=true" mode="widthFix" style="width:330rpx">body</image>
+      <view class="combine">
+        <image class="overlay" src="https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/body.png?raw=true" mode="widthFix" style="width:330rpx"></image>
+        <image class="overlay" src="https://github.com/pomeloqy/Realize-mini-program/blob/master/src/imgs/cotta.png?raw=true" mode="widthFix" style="width:330rpx"></image>
+      </view>
     </view>
     <view class="tap">
       <button @tap="gotoFocus('./setfocus')" class="goFocus">开始专注</button>
@@ -148,7 +160,7 @@
       },
       gotoPersonal () {
         console.log('gotoPersonal')
-        this.$navigate('./personalpage')
+        this.$navigate('./index')
       },
       goCommunity () {
         console.log('community')

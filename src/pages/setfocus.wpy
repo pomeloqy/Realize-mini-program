@@ -14,9 +14,125 @@
   .userinfo-nickname {
     color: #aaa;
   }
+
+  .contain {
+    height:100%;
+    display:flex;
+    flex-direction:column;
+  }
+  .dynamic-head{
+    color: white;
+    opacity: 0.7;
+    letter-spacing: 3rpx;
+    height: 60rpx;
+    line-height: 57rpx;
+    font-size: 29rpx;
+    border-radius: 50rpx;
+    position: relative;
+    float: left;
+    background-color: black;
+    margin: 28rpx 20rpx 20rpx 15rpx;
+    padding: 3rpx 30rpx 3rpx 10rpx;
+
+  }
+  .content {
+    display: inline;
+    position: relative;
+    margin: 10rpx 30rpx;
+  }
+  .tody-head {
+    margin: 20rpx;
+    font-size: 26rpx;
+  }
+  .tody-undo-list {
+    border-radius: 25rpx;
+    border: 0.5rpx solid #EEAD0E;
+    padding: 5rpx;
+    width: 100%;
+    margin: -5rpx;
+    /** height: 150rpx; **/
+
+  }
+  .task-title {
+    margin-bottom: 3rpx;
+    font-size: 34rpx;
+    margin-top: 15rpx;
+  }
+  .task-title, .task-remark{
+    float: left;
+    width: 400rpx;
+    height: 80rpx;
+    line-height: 76rpx;
+    margin-left: 35rpx;
+  }
+  .task-remark{
+    clear:both;
+    font-size:30rpx;
+    color: #757575;
+  }
+  .task-beginnow{
+    margin-left: 450rpx;
+    width: 250rpx;
+    height: 170rpx;
+    line-height: 160rpx;
+    font-size: 42rpx;
+    color: #EEAD0E;
+  }
+  .tail {
+    position: fixed;
+    bottom: 50rpx;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    line-height: 96rpx;
+  }
+  .add-new-task {
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50rpx;
+    color:gray;
+    background-color: #F2F2F2;
+    margin-left: 60rpx;
+    text-align: center;
+  }
+  .quickly-start {
+    width: 400rpx;
+    height: 100rpx;
+    margin-left: 90rpx;
+    color:white;
+    background-color: #EEAD0E;
+    border-radius: 50rpx;
+    padding-left: 48rpx;
+  }
+  .random-user-img{
+    border-radius:50rpx;
+  }
+  .random-content {
+    margin-left: 15rpx;
+  }
 </style>
 <template>
-  <view class="container">开始专注
+  <view class="contain">
+    <view>
+      <view class="dynamic-head">
+        <image class="random-user-img" src="https://github.com/ChickenDinner8/Client-Customer/blob/master/images/userimg1.png?raw=true" style="margin-right: -1px;vertical-align: middle;width:25px; height: 25px;"></image>
+        <span class="random-content">杨洋此时正在平顶山市写论文</span>
+      </view>
+    </view>
+    <view class="content">
+      <view class="tody-head">今天要做到的事情</view>
+      <view class="tody-undo-list">
+        <view class="left">
+          <view class="task-title">写论文</view>
+          <view class="task-remark">已经坚持专注2天</view>
+        </view>
+        <view class="task-beginnow">现在开始  ></view>
+      </view>
+    </view>
+    <view class="tail">
+      <view class="add-new-task">+</view>
+      <view class="quickly-start">快速开始</view>
+    </view>
   </view>
 </template>
 
