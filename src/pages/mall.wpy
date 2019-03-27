@@ -27,44 +27,141 @@
     webkit-backdrop-filter: 0.5;
     border-radius: 30rpx;
   }
+  .rect {
+    width: 16rpx;
+    height: 60rpx;
+    background-color: #00868B;
+    border-radius: 15rpx;
+    margin-right: 15rpx;
+  }
+  .netcourse-title, .nonbenefit-title, .goods-title{
+    display: flex;
+    flex-direction: row;
+  }
+  .list {
+    background-color:#eaeaea;
+    border-radius: 30rpx;
+    display: inline-block;
+    padding: 20rpx 5rpx;
+  }
+  .nonlist{
+    background-color:#eaeaea;
+    border-radius: 30rpx;
+    height: 420rpx;
+    padding: 20rpx 5rpx;
+  }
+  .group {
+    border-radius: 15rpx;
+    position: relative;
+    float: left;
+    text-align: center;
+    margin-left: 2%;
+    margin-right: 3%;
+    margin-bottom: 10%;
+    background-color: white;
+  }
+  .netcourse-list{
+    width: 300rpx;
+    height: 280rpx;
+  }
+  .nonbenefit-list{
+    width: 620rpx;
+    height: 400rpx;
+  }
+  .goods-list {
+    width: 300rpx;
+    height: 355rpx;
+  }
+  .course-img{
+    width: 93%;
+    height: 50%;
+    border-radius: 10rpx;
+    position: absolute;
+    left: 0;
+    top: -45%;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  .non-img {
+    width:100%;
+    height: 50%;
+    border-radius: 10rpx;
+    position: absolute;
+    left: 0;
+    top: -45%;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  .goods-img {
+    width: 93%;
+    height: 55%;
+    border-radius: 10rpx;
+    position: absolute;
+    left: 0;
+    top: -38%;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  .course-name, .non-name, .goods-name{
+    position: relative;
+    top: 58%;
+    font-size: 90%;
+    font-weight: 800;
+    text-align: left;
+    color: #3f3f3f;
+    margin-left: 5%;
+  }
+  .course-price, .non-price, .goods-price{
+    position: relative;
+    top: 63%;
+    font-size: 70%;
+    font-weight: 800;
+    text-align: left;
+    color: orange;
+    margin-left: 5%;
+  }
+
 </style>
 <template>
   <view class="container">
     <view class="head box">
     </view>
     <view class="netcourse box">
-      <view class="netcourse-title">优惠网课
-        <span class="rect"></span>
+      <view class="netcourse-title">
+        <span class="rect"></span>精选云课堂
       </view>
       <view class="list">
-        <view class="netcourse-list">内容
-          <image>商品</image>
-          <view>品名</view>
-          <view>价格</view>
+        <view class="netcourse-list group" wx:for-items="{{courses}}" wx:for-index="index" wx:for-item="item" wx:key="id">
+          <image class="course-img" src="{{item.img}}"></image>
+          <view class="course-name">{{item.name}}</view>
+          <view class="course-price">{{item.price}}梦想币</view>
         </view>
       </view>
     </view>
-    <view class="netcourse box">
-      <view class="netcourse-title">每日公益
-        <span class="rect"></span>
+    <view class="nonbenefit box">
+      <view class="nonbenefit-title">
+        <span class="rect"></span>每日公益
       </view>
-      <view class="list">
-        <view class="netcourse-list">内容
-          <image>商品</image>
-          <view>品名</view>
-          <view>价格</view>
-        </view>
+      <view class="nonlist">
+        <view class="nonbenefit-list group" wx:for-items="{{nonbenefits}}" wx:for-index="index" wx:for-item="item" wx:key="id">
+          <image class="non-img" src="{{item.img}}"></image>
+          <view class="non-name">{{item.name}}</view>
+          <view class="non-price">{{item.price}}梦想币</view>
+        </view>      
       </view>
     </view>
-    <view class="netcourse box">
-      <view class="netcourse-title">好物优选
-        <span class="rect"></span>
+    <view class="goods box">
+      <view class="goods-title">
+        <span class="rect"></span>好物优选
       </view>
       <view class="list">
-        <view class="netcourse-list">内容
-          <image>商品</image>
-          <view>品名</view>
-          <view>价格</view>
+        <view class="goods-list group" wx:for-items="{{goods}}" wx:for-index="index" wx:for-item="item" wx:key="id">
+          <image class="goods-img" src="{{item.img}}"></image>
+          <view class="goods-name">{{item.name}}</view>
+          <view class="goods-price">{{item.price}}梦想币</view>
         </view>
       </view>
     </view>
@@ -78,7 +175,57 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '开始专注'
+      navigationBarTitleText: '兑换中心'
+    }
+    data = {
+      courses: [
+        {
+          id: 0,
+          name: '深度学习课程',
+          price: 9997,
+          img: 'https://edu-image.nosdn.127.net/6872B50E8B0FFD8F77859526B8B0C4C0.jpg?imageView&quality=100&thumbnail=450y250&type=webp'
+        },
+        {
+          id: 1,
+          name: '数据分析课程',
+          price: 13997,
+          img: 'https://edu-image.nosdn.127.net/C0D63CFE754476F0BCDCDAAF54EEC484.JPG?imageView&quality=100&thumbnail=450y250&type=webp'
+        },
+        {
+          id: 2,
+          name: '机器学习工程师课程',
+          price: 15997,
+          img: 'https://edu-image.nosdn.127.net/A29B7C2FE30B34F5F358FF96BF70936F.jpg?imageView&quality=100&thumbnail=450y250&type=webp'
+        }
+      ],
+      nonbenefits: [
+        {
+          id: 0,
+          name: '免费午餐',
+          price: 5000,
+          img: 'http://img4.imgtn.bdimg.com/it/u=1917981576,2038998202&fm=26&gp=0.jpg'
+        }
+      ],
+      goods: [
+        {
+          id: 0,
+          name: '小米air dots青春版蓝牙耳机',
+          price: 69997,
+          img: 'http://img4.imgtn.bdimg.com/it/u=2263480839,1150802251&fm=26&gp=0.jpg'
+        },
+        {
+          id: 1,
+          name: '小米智能音响',
+          price: 73997,
+          img: 'http://img5.imgtn.bdimg.com/it/u=3384002615,3946385662&fm=11&gp=0.jpg'
+        },
+        {
+          id: 2,
+          name: '小米智能网关',
+          price: 45997,
+          img: 'http://img4.imgtn.bdimg.com/it/u=3099985231,2196034069&fm=26&gp=0.jpg'
+        }
+      ]
     }
   }
 </script>
